@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 
 // import { Container } from './styles';
 
@@ -10,6 +10,14 @@ export default class New extends Component {
   };
 
   render() {
-    return <View />;
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        <Button
+          title="Go to Feed"
+          onPress={() => navigate('Feed')}
+        />
+      </View>
+    );
   }
 }

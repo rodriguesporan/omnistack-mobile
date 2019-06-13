@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 
-import { View, Button } from 'react-native';
+import { View, Button, Image, TouchableOpacity } from 'react-native';
+
+import camera from '../assets/camera.png';
 
 // import { Container } from './styles';
 
 export default class Feed extends Component {
-  static navigationOptions = {
-    title: 'Feed',
-  };
+  static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate('New')}>
+        <Image style={{ marginEnd: 20, }} source={camera} />
+      </TouchableOpacity>
+    ),
+  });
 
   render() {
     const { navigate } = this.props.navigation;
