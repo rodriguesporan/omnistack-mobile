@@ -8,8 +8,6 @@ import like from '../assets/like.png';
 import comment  from '../assets/comment.png';
 import send from '../assets/send.png';
 
-// import { Container } from './styles';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
