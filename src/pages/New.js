@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ImagePicker from 'react-native-image-picker';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -64,18 +65,39 @@ export default class New extends Component {
   };
 
   state = {
+    preview: null,
     author: '',
     palce: '',
     description: '',
     hashtags: '',
   };
 
+  handleSelectImage = () => {
+    ImagePicker.showImagePicker({
+      title: 'Selecionar imagem',
+    }, upload => {
+      if(upload.error) {
+        console.log('Error');
+      } else if (upload.didCancel) {
+        console.log('Used canceled');
+      } else {
+        const preview = {
+          uri: `data:image/jpeg;base64,${upload.data}`,
+        }
+
+        this.setState({ preview });
+      }
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.selectButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.selectButton} onPress={this.handleSelectImage}>
           <Text style={styles.selectButtonText}>Selecionar image</Text>
         </TouchableOpacity>
+
+        { this.state.preview && <Image style={styles.preview} source={this.state.preview} /> }
 
         <TextInput
           style={styles.input}
