@@ -97,6 +97,10 @@ export default class Feed extends Component {
     });
   }
 
+  handleLike = async (id) => {
+    await api.post(`posts/${id}/like`);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -115,7 +119,7 @@ export default class Feed extends Component {
               <Image style={styles.feedImage} source={{ uri: `http://localhost:3000/files/${item.image}` }} />
               <View style={styles.feedItemFooter}>
                 <View style={styles.actions}>
-                  <TouchableOpacity style={styles.action} onPress={() => {}}>
+                  <TouchableOpacity style={styles.action} onPress={() => this.handleLike(item._id)}>
                     <Image source={like} />
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.action} onPress={() => {}}>
